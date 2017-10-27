@@ -15,7 +15,7 @@ public class BuildingFloorsEntrances {
         int entrance = 1;
 
         System.out.println("Enter flat number: ");
-        while (true) {
+        while (true) {                                  //проверка на попадание в диапазон квартир в доме
             flatNumber = sc.nextInt();
             if ((flatNumber < 1) || (flatNumber > 144)) {
                 System.out.println("This flat number doesn`t exist in this house. Pls re-renter flat number: ");
@@ -24,12 +24,12 @@ public class BuildingFloorsEntrances {
             }
         }
 
-        for (int i = 0; i < 144; i += 36) {
+        for (int i = 0; i < 144; i += 36) {             //рассчет подъезда
             if (flatNumber > (i + 36)) {
                 entrance++;
             }
         }
-        for (int i = 0; i < 36; i += 4) {
+        for (int i = 0; i < 36; i += 4) {               //рассчет этажа
             if ((flatNumber % 36) == 0) {
                 floor = 9;
                 break;
