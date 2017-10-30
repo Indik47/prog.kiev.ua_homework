@@ -15,16 +15,15 @@ public class BuildingFloorsEntrances {
         int entrance;
 
         System.out.println("Enter flat number: ");
-        while (true) {                                  //проверка на попадание в диапазон квартир в доме
+        flatNumber = sc.nextInt();
+
+        while ((flatNumber < 1) || (flatNumber > 144)) {       //проверка на попадание в диапазон квартир в доме
+            System.out.println("This flat number doesn`t exist in this house. Pls re-renter flat number: ");
             flatNumber = sc.nextInt();
-            if ((flatNumber < 1) || (flatNumber > 144)) {
-                System.out.println("This flat number doesn`t exist in this house. Pls re-renter flat number: ");
-            } else {
-                break;
-            }
         }
-        entrance =(int)Math.ceil(flatNumber / 36);            //рассчет подъезда
-        floor =(int)Math.ceil((flatNumber % 36) / 4);       // рассчет этажа
+
+        entrance = (int) Math.ceil(flatNumber / 36);            //рассчет подъезда
+        floor = (int) Math.ceil((flatNumber % 36) / 4);       // рассчет этажа
         if (floor == 0) {
             floor = 9;
         }
