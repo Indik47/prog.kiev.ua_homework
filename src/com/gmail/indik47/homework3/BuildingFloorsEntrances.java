@@ -22,7 +22,7 @@ public class BuildingFloorsEntrances {
             flatNumber = sc.nextInt();
         }
 
-        entrance = (((flatNumber - 1) / 36) + 1);            //рассчет подъезда
+        entrance = ((flatNumber - 1) / 36) + 1;            //рассчет подъезда
         floor = ((flatNumber - 1) % 36 / 4) + 1;       // рассчет этажа
 
         System.out.println("Entrance " + entrance);
