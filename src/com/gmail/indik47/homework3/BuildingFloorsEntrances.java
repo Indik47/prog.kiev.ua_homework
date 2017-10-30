@@ -11,8 +11,8 @@ public class BuildingFloorsEntrances {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         double flatNumber;
-        double floor = 1;
-        double entrance = 1;
+        int floor;
+        int entrance;
 
         System.out.println("Enter flat number: ");
         while (true) {                                  //проверка на попадание в диапазон квартир в доме
@@ -24,9 +24,9 @@ public class BuildingFloorsEntrances {
             }
         }
 
-        entrance = Math.ceil(flatNumber / 36);            //рассчет подъезда
+        entrance =(int)Math.ceil(flatNumber / 36);            //рассчет подъезда
 
-        floor = Math.ceil((flatNumber % 36) / 4);       // рассчет этажа
+        floor =(int)Math.ceil((flatNumber % 36) / 4);       // рассчет этажа
         if (floor == 0) {
             floor = 9;
         }
