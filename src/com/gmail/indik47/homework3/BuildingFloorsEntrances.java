@@ -23,16 +23,12 @@ public class BuildingFloorsEntrances {
                 break;
             }
         }
-
         entrance =(int)Math.ceil(flatNumber / 36);            //рассчет подъезда
-
         floor =(int)Math.ceil((flatNumber % 36) / 4);       // рассчет этажа
         if (floor == 0) {
             floor = 9;
         }
-
         System.out.println("Entrance " + entrance);
         System.out.println("Floor " + floor);
-
     }
 }
