@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class BuildingFloorsEntrances {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        double flatNumber;
+        int flatNumber;
         int floor;
         int entrance;
 
@@ -22,11 +22,9 @@ public class BuildingFloorsEntrances {
             flatNumber = sc.nextInt();
         }
 
-        entrance = (int) Math.ceil(flatNumber / 36);            //рассчет подъезда
-        floor = (int) Math.ceil((flatNumber % 36) / 4);       // рассчет этажа
-        if (floor == 0) {
-            floor = 9;
-        }
+        entrance = (((flatNumber - 1) / 36) + 1);            //рассчет подъезда
+        floor = ((flatNumber - 1) % 36 / 4) + 1;       // рассчет этажа
+
         System.out.println("Entrance " + entrance);
         System.out.println("Floor " + floor);
     }
