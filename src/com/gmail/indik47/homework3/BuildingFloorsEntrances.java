@@ -10,9 +10,9 @@ import java.util.Scanner;
 public class BuildingFloorsEntrances {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int flatNumber;
-        int floor = 1;
-        int entrance = 1;
+        double flatNumber;
+        double floor = 1;
+        double entrance = 1;
 
         System.out.println("Enter flat number: ");
         while (true) {                                  //проверка на попадание в диапазон квартир в доме
@@ -24,19 +24,13 @@ public class BuildingFloorsEntrances {
             }
         }
 
-        for (int i = 0; i < 144; i += 36) {             //рассчет подъезда
-            if (flatNumber > (i + 36)) {
-                entrance++;
-            }
+        entrance = Math.ceil(flatNumber / 36);            //рассчет подъезда
+
+        floor = Math.ceil((flatNumber % 36) / 4);       // рассчет этажа
+        if (floor == 0) {
+            floor = 9;
         }
-        for (int i = 0; i < 36; i += 4) {               //рассчет этажа
-            if ((flatNumber % 36) == 0) {
-                floor = 9;
-                break;
-            } else if ((flatNumber % 36) > (i + 4)) {
-                floor++;
-            }
-        }
+
         System.out.println("Entrance " + entrance);
         System.out.println("Floor " + floor);
 
