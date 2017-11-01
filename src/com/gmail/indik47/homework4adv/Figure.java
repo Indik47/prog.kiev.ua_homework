@@ -12,11 +12,6 @@ public class Figure {
         int height = sc.nextInt();
 
         for (; i > 0; ) {
-            if (i == height) {   //если счетчик дошел до макс.высоты, переключаем toggle в false и счетчик начинает идти в минус
-                toggle = false;
-                s = s + "*";    //при переключении toggle печатаем центральную, самую длинную строку
-                System.out.println(s);
-            }
             if (toggle) {
                 i++;
                 s = s + "*";
@@ -24,6 +19,11 @@ public class Figure {
             } else {
                 i--;
                 System.out.println(s.substring(0, i));
+            }
+            if (i == height) {   //если счетчик дошел до макс.высоты, переключаем toggle в false и счетчик начинает идти в минус
+                toggle = false;
+                s = s + "*";    //при переключении toggle печатаем центральную, самую длинную строку
+                System.out.println(s);
             }
         }
     }
