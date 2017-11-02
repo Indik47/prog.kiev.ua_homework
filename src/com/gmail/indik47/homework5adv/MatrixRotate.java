@@ -10,13 +10,11 @@ public class MatrixRotate {
 
         arrayPrint(arr);
         arr = arrayRotate(arr);
-
         System.out.println("-----------");
         arrayPrint(arr);
-
     }
 
-    public static int[][] arrayInit(int m) {
+    public static int[][] arrayInit(int m) {      //инициализация массива
         int[][] arr = new int[m][m];
         for (int i = 0; i < m; i++) {
             arr[i] = new int[]{1, 2, 3, 4, 5, 6};
@@ -24,9 +22,9 @@ public class MatrixRotate {
         return arr;
     }
 
-    public static int[][] arrayRotate(int[][] arr) {
+    public static int[][] arrayRotate(int[][] arr) {  //переворот массива на 90 по часовой стрелке
         int m = arr.length;
-        for (int i = 0; i < m / 2; i++) {      //переворот массива
+        for (int i = 0; i < m / 2; i++) {
             for (int j = i; j < m - 1 - i; j++) {
                 int temp = arr[i][j];
                 arr[i][j] = arr[m - 1 - j][i];
@@ -38,7 +36,7 @@ public class MatrixRotate {
         return arr;
     }
 
-    public static int[][] arrayPrint(int[][] arr) {
+    public static int[][] arrayPrint(int[][] arr) {    //печать массива
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr.length; j++) {
                 System.out.print(arr[i][j] + " ");
