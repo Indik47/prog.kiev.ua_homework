@@ -6,26 +6,23 @@ public class Figure {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int i = 1;
-        boolean toggle = true;
-        String s = "";
-        System.out.println("Enter height: ");
-        int height = sc.nextInt();
+        int j = 1;
 
-        for (; i > 0; ) {
-            if (toggle) {
+        System.out.println("Enter height: ");
+        int n = 4;//sc.nextInt();
+
+
+        for (; i <= (2 * n - 1); ) {
+            if (j > n - Math.abs(n - i)) {
+                System.out.println("");
                 i++;
-                s = s + "*";
-                System.out.println(s);
+                j = 1;
             } else {
-                i--;
-                System.out.println(s.substring(0, i));
-            }
-            if (i == height) {   //если счетчик дошел до макс.высоты, переключаем toggle в false и счетчик начинает идти в минус
-                toggle = false;
-                s = s + "*";    //при переключении toggle печатаем центральную, самую длинную строку
-                System.out.println(s);
+                System.out.print("*");
+                j++;
             }
         }
     }
 }
+
 
