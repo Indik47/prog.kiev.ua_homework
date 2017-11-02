@@ -1,10 +1,8 @@
-package homework5adv;
+package com.gmail.indik47.homework5adv;
 /*      «Перевернуть массив». Т.е. написать программу которая повернет
         базовый массив на 90,180,270 градусов по часовой стрелке. (При
         выполнении задания использовать дополнительный массив нельзя). В
         примере показан поворот на 90 градусов - (3 часа)*/
-
-import java.util.Random;
 
 public class MatrixRotate {
     public static void main(String[] args) {
