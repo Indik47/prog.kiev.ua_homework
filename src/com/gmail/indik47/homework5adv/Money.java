@@ -1,51 +1,66 @@
 package com.gmail.indik47.homework5adv;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Money {
     public static void main(String[] args) {
-        String[] singleDigits = new String[]{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
-        String[] elevenNineteen = new String[]{"ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "eighteen", "nineteen"};
-        String[] tenth = new String[]{"ten", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety"};
-        String[] hundredsMillions = new String[]{"", "thousand", "million", "billion"};
         Scanner sc = new Scanner(System.in);
+
         System.out.println("How much money?");
-        String input = "25815312,4";  //sc.nextLine();
+        String input = sc.nextLine();//"21453327,454";
         String[] money = input.split("[,]");
 
         char[] moneyInt = money[0].toCharArray();
         char[] moneyCents = money[1].toCharArray();
 
-        for (int i = 0; i < moneyInt.length; i++) {
-            int index = moneyInt.length - i;
-            int value = Character.getNumericValue(moneyInt[i]);
+        inWords(moneyInt);
+        System.out.print("dollars ");
+        inWords(moneyCents);
+        System.out.print("cents ");
+    }
 
+    public static void inWords(char[] arr){
+        String[] singleDigits = new String[]{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+        String[] elevenNineteen = new String[]{"ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+        String[] tenth = new String[]{"twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety"};
+        String[] hundredsMillions = new String[]{"", "thousand", "million", "billion"};
 
-            //первая цифра в тройке - индексы массива 3,6,9,12..
+        boolean skip = false; //переменная для пропуска итерации
+
+        for (int i = 0; i < arr.length; i++) {
+            int index = arr.length - i; //индекс цифры в числе, растет с единиц к десяткам к сотням и т.д.
+            int value = Character.getNumericValue(arr[i]); //получение int из char массива
+
+            //если число = 0 или skip = true, переходим на следующую итерацию)
+            if (value == 0 || skip) {
+                skip = false;
+                continue;
+            }
+            /*ведем рассчет по 3 цифры: сотни-десятки-единицы. Если нужно, добавляем в нужных местах thousand, million.*/
+
+            //левая цифра в тройке(сотни)
             if (index % 3 == 0) {
                 System.out.print(singleDigits[value - 1] + " hundred ");
             }
 
-            //вторая цифра в тройке, если она МЕНЬШЕ двух десятков(одинадцать, пятнадцать т.п.) -  2,5,8,11..
-            if ((index - 2) % 3 == 0 && value < 2) {
-                System.out.print(elevenNineteen[Character.getNumericValue(moneyInt[i + 1])] + " ");
-                System.out.println(hundredsMillions[(index - 1) / 3]);
+            //средняя цифра в тройке(десятки), если она МЕНЬШЕ двух десятков(одинадцать, пятнадцать...)
+            if (((index - 2) % 3 == 0) && (value < 2)) {                                       //если средняя цифра трехзначного числа = 1
+                System.out.print(elevenNineteen[Character.getNumericValue(arr[i + 1])] + " "); //печатаем число, которое она образует с правой цифрой (=11..19)
+                System.out.print(hundredsMillions[(index - 1) / 3] + " ");                     //добавляем thousand/million, если нужно
+                skip = true;                                                                   //и пропускаем след.итерацию (единицы не печатаем)
+            }
+            //средняя цифра в тройке(десятки), если она БОЛЬШЕ/равно двум десяткам(двадцать, тридцать...)
+            else if ((index - 2) % 3 == 0 && value >= 2) {
+                System.out.print(tenth[value - 2] + " ");
             }
 
-            //вторая цифра в тройке, если она БОЛЬШЕ двух десятков
-            else {
-                if (/*индекс 2,5,8..*/(index - 2) % 3 == 0 && value >= 2) {
-                    System.out.print(tenth[value - 1] + " ");
-                }
-            }
-
-            //третья(последняя) цифра в тройке  -  индексы массива 1,4,7,10..*/
-            if ((index - 1) % 3 == 0 && Character.getNumericValue(moneyInt[i - 1]) >= 2) {
+            //правая цифра в тройке(единицы)
+            if ((index - 1) % 3 == 0) {
                 System.out.print(singleDigits[value - 1] + " ");
-                System.out.println(hundredsMillions[(index - 1) / 3]);
+                System.out.print(hundredsMillions[(index - 1) / 3] + " ");
             }
         }
+
 
     }
 }
