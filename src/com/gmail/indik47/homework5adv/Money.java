@@ -7,7 +7,7 @@ public class Money {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("How much money?");
-        String input = sc.nextLine();//"21453327,454";
+        String input = sc.nextLine();
         String[] money = input.split("[,]");
 
         char[] moneyInt = money[0].toCharArray();
@@ -19,7 +19,7 @@ public class Money {
         System.out.print("cents ");
     }
 
-    public static void inWords(char[] arr){
+    public static void inWords(char[] arr) {
         String[] singleDigits = new String[]{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
         String[] elevenNineteen = new String[]{"ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
         String[] tenth = new String[]{"twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety"};
@@ -36,31 +36,29 @@ public class Money {
                 skip = false;
                 continue;
             }
-            /*ведем рассчет по 3 цифры: сотни-десятки-единицы. Если нужно, добавляем в нужных местах thousand, million.*/
-
-            //левая цифра в тройке(сотни)
+                  /*ведем рассчет по 3 цифры: сотни-десятки-единицы. Если нужно, добавляем в нужных местах thousand, million.*/
+            /*левая цифра в тройке(сотни):*/
             if (index % 3 == 0) {
                 System.out.print(singleDigits[value - 1] + " hundred ");
             }
 
-            //средняя цифра в тройке(десятки), если она МЕНЬШЕ двух десятков(одинадцать, пятнадцать...)
+            /*средняя цифра в тройке(десятки), если она МЕНЬШЕ двух десятков(одинадцать, пятнадцать...)*/
             if (((index - 2) % 3 == 0) && (value < 2)) {                                       //если средняя цифра трехзначного числа = 1
                 System.out.print(elevenNineteen[Character.getNumericValue(arr[i + 1])] + " "); //печатаем число, которое она образует с правой цифрой (=11..19)
                 System.out.print(hundredsMillions[(index - 1) / 3] + " ");                     //добавляем thousand/million, если нужно
                 skip = true;                                                                   //и пропускаем след.итерацию (единицы не печатаем)
             }
-            //средняя цифра в тройке(десятки), если она БОЛЬШЕ/равно двум десяткам(двадцать, тридцать...)
+
+            /*средняя цифра в тройке(десятки), если она БОЛЬШЕ/равно двум десяткам(двадцать, тридцать...)*/
             else if ((index - 2) % 3 == 0 && value >= 2) {
                 System.out.print(tenth[value - 2] + " ");
             }
 
-            //правая цифра в тройке(единицы)
+            /*правая цифра в тройке(единицы)*/
             if ((index - 1) % 3 == 0) {
                 System.out.print(singleDigits[value - 1] + " ");
                 System.out.print(hundredsMillions[(index - 1) / 3] + " ");
             }
         }
-
-
     }
 }
