@@ -15,8 +15,9 @@ public class Money {
 
         if (money.length == 2) {
             char[] moneyCents = money[1].toCharArray();
+            if(Character.getNumericValue(moneyCents[0]) != 0){
             inWords(moneyCents);
-            System.out.print("cents ");
+            System.out.print("cent ");}
         }
     }
 
