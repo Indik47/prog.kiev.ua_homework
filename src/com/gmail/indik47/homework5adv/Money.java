@@ -7,16 +7,17 @@ public class Money {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("How much money?");
-        String input = sc.nextLine();
-        String[] money = input.split("[,]");
+        String[] money = sc.nextLine().split("[,]");
 
         char[] moneyInt = money[0].toCharArray();
-        char[] moneyCents = money[1].toCharArray();
-
         inWords(moneyInt);
         System.out.print("dollars ");
-        inWords(moneyCents);
-        System.out.print("cents ");
+
+        if (money.length == 2) {
+            char[] moneyCents = money[1].toCharArray();
+            inWords(moneyCents);
+            System.out.print("cents ");
+        }
     }
 
     public static void inWords(char[] arr) {
