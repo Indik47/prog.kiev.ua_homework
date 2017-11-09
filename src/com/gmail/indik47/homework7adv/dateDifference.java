@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class dateDifference {
     public static void main(String[] args) {
-        Date dateInput = inputDate();
+        Date dateInput = inputDateParse();
         Date dateCurrent = new Date();
 
         String dateInputStr = formatDate(dateInput);
@@ -20,7 +20,7 @@ public class dateDifference {
         compareDates(dateInputStr, dateCurrentStr);
     }
 
-    public static Date inputDate() {
+    public static Date inputDateParse() {
         Scanner sc = new Scanner(System.in);
         Date dateInput = new Date();
         SimpleDateFormat sdfOne = new SimpleDateFormat("dd MM yyyy");
