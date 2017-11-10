@@ -9,35 +9,38 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-public class dateDifference {
+public class DateDifference {
     public static void main(String[] args) {
-        Date dateInput = inputDateParse();
+        Date dateInput = parseInputDate();
         Date dateCurrent = new Date();
 
-        String dateInputStr = formatDate(dateInput);
-        String dateCurrentStr = formatDate(dateCurrent);
+        String dateInputToString = formatDate(dateInput);
+        String dateCurrentToString = formatDate(dateCurrent);
 
-        compareDates(dateInputStr, dateCurrentStr);
+        compareDates(dateInputToString, dateCurrentToString);
     }
 
-    public static Date inputDateParse() {
+    public static Date parseInputDate() {
         Scanner sc = new Scanner(System.in);
         Date dateInput = new Date();
-        SimpleDateFormat sdfOne = new SimpleDateFormat("dd MM yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyyy");
 
-        System.out.println("Input date (e.g. 01 05 1986):");
-        String input = sc.nextLine();
-        try {
-            dateInput = sdfOne.parse(input);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        System.out.println("Input date dd MM yyyy (e.g. 01 05 1986):");
+        dateInput = null;
+        while (dateInput == null) {
+            String input = sc.nextLine();
+            try {
+                dateInput = sdf.parse(input);
+            } catch (ParseException e) {
+                System.out.println("Wrong input, re-enter date: ");
+            }
         }
         return dateInput;
     }
 
     public static String formatDate(Date date) {
-        SimpleDateFormat sdfOne = new SimpleDateFormat("dd MM yyyy");
-        String dateStr = sdfOne.format(date);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyyy");
+        String dateStr = sdf.format(date);
         return dateStr;
     }
 
